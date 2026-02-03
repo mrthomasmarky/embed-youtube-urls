@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff0000;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        .video-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        iframe {
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .instruction {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Player</h1>
+        
+        <div class="input-group">
+            <label for="youtube-url">Enter YouTube URL:</label>
+            <input type="text" id="youtube-url" placeholder="https://www.youtube.com/watch?v=tgbNymZ7vqY">
+            <div class="instruction">Paste any YouTube video URL here</div>
+        </div>
+        
+        <button onclick="loadVideo()">Load Video</button>
+        
+        <div class="video-container">
+            <iframe id="video-frame" width="720" height="480" 
+                    src="https://www.youtube.com/embed/tgbNymZ7vqY" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        function loadVideo() {
+            const input = document.getElementById('youtube-url').value;
+            const iframe = document.getElementById('video-frame');
+            
+            // Extract video ID from various YouTube URL formats
+            let videoId = '';
+            
+            if (input.includes('youtube.com/watch?v=')) {
+                videoId = input.split('watch?v=')[1].split('&')[0];
+            } else if (input.includes('youtu.be/')) {
+                videoId = input.split('youtu.be/')[1].split('?')[0];
+            } else if (input.includes('youtube.com/embed/')) {
+                videoId = input.split('embed/')[1].split('?')[0];
+            }
+            
+            if (videoId) {
+                iframe.src = `https://www.youtube.com/embed/${videoId}`;
+            } else {
+                alert('Please enter a valid YouTube URL');
+            }
+        }
+        
+        // Allow Enter key to load video
+        document.getElementById('youtube-url').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                loadVideo();
+            }
+        });
+    </script>
+</body>
+</html>
