@@ -108,7 +108,10 @@
                 videoId = input.split('youtu.be/')[1].split('?')[0];
             } else if (input.includes('youtube.com/embed/')) {
                 videoId = input.split('embed/')[1].split('?')[0];
+            } else if (input.includes('youtube.com/shorts/')) {
+                videoId = input.split('shorts/')[1].split('?')[0];
             }
+
             
             if (videoId) {
                 iframe.src = `https://www.youtube.com/embed/${videoId}`;
@@ -125,4 +128,5 @@
         });
     </script>
 </body>
+
 </html>
