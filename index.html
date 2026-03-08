@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         function loadVideo() {
             const input = document.getElementById('youtube-url').value;
             const iframe = document.getElementById('video-frame');
@@ -108,6 +108,8 @@
                 videoId = input.split('youtu.be/')[1].split('?')[0];
             } else if (input.includes('youtube.com/embed/')) {
                 videoId = input.split('embed/')[1].split('?')[0];
+            } else if (input.includes('youtube.com/shorts/')) {
+                videoId = input.split('shorts/')[1].split('?')[0];
             }
             
             if (videoId) {
@@ -126,3 +128,4 @@
     </script>
 </body>
 </html>
+
