@@ -111,7 +111,6 @@
             } else if (input.includes('youtube.com/shorts/')) {
                 videoId = input.split('shorts/')[1].split('?')[0];
             }
-
             
             if (videoId) {
                 iframe.src = `https://www.youtube.com/embed/${videoId}`;
@@ -128,5 +127,5 @@
         });
     </script>
 </body>
-
 </html>
+
